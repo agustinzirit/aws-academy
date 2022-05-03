@@ -1,0 +1,22 @@
+Resources:
+  clientCreatedSNS:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: ${self:service}-${self:provider.stage}-clientCreatedSNS
+
+  createCardQueueSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref clientCreatedSNS
+      Endpoint: !GetAtt createCardQueue.Arn
+      Protocol: sqs
+      # RawMessageDelivery: true
+
+  # Create the subscription to the 'createGiftQueue'
+  createGiftQueueSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref clientCreatedSNS
+      Endpoint: !GetAtt createGiftQueue.Arn
+      Protocol: sqs
+      # RawMessageDelivery: true
