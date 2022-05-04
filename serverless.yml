@@ -32,6 +32,7 @@ provider:
   stage: ${self:custom.stage}
   enviroment:
     QUEUE_CARD_URL: https://sqs.${self:provider.region}.amazonaws.com/661329848707/${self:service}-${self:provider.stage}-create-card
+    CLIENT_CREATED_TOPIC_ARN: !GetAtt clientCreatedSNS.Arn
   iam:
     role:
       statements:
@@ -45,9 +46,9 @@ provider:
             - arn:aws:dynamodb:us-east-1:661329848707:table/Gift
         - Effect: Allow
           Action:
-            - sns:publish
+            - SNS:Publish
           Resource:
-            - arn:aws:sns:us-east-1:661329848707:aws-academy-dev-clientCreatedSNS
+            - !GetAtt clientCreatedSNS.Arn
         - Effect: Allow
           Action:
             - sqs:SendMessage
