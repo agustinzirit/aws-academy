@@ -32,7 +32,7 @@ provider:
   stage: ${self:custom.stage}
   environment:
     QUEUE_CARD_URL: https://sqs.${self:provider.region}.amazonaws.com/661329848707/${self:service}-${self:provider.stage}-create-card
-    CLIENT_CREATED_TOPIC_ARN: !GetAtt clientCreatedSNS.Arn
+    CLIENT_CREATED_TOPIC_ARN: !Ref clientCreatedSNS
   iam:
     role:
       statements:
@@ -48,7 +48,7 @@ provider:
           Action:
             - SNS:Publish
           Resource:
-            - !GetAtt clientCreatedSNS.Arn
+            - !Ref clientCreatedSNS
         - Effect: Allow
           Action:
             - sqs:SendMessage
