@@ -2,10 +2,10 @@ service: aws-academy
 
 frameworkVersion: '3'
 
-package:
-  # individually: true
-  patterns:
-    - '!node_modules/**'
+# package:
+#   # individually: true
+#   patterns:
+#     - '!node_modules/**'
 
 custom:
   stage: ${opt:stage, 'dev'}
