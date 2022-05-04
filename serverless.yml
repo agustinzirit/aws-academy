@@ -30,7 +30,7 @@ provider:
   runtime: nodejs14.x
   region: us-east-1
   stage: ${self:custom.stage}
-  enviroment:
+  environment:
     QUEUE_CARD_URL: https://sqs.${self:provider.region}.amazonaws.com/661329848707/${self:service}-${self:provider.stage}-create-card
     CLIENT_CREATED_TOPIC_ARN: !GetAtt clientCreatedSNS.Arn
   iam:
