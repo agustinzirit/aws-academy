@@ -13,7 +13,7 @@ module.exports.notification = async (clientID) => {
   const sns = new SNS().publish(params).promise();
 
   console.log("Visualizar log");
-  console.log(JSON.stringify({params}));
+  console.log("test");
 
   /* Una promesa que se está resolviendo. */
   sns
