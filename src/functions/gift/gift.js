@@ -2,17 +2,17 @@ import { v4 } from "uuid";
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import moment from "moment";
 
-// const getClientById = async (clientId) => {
-//   const params = {
-//     TableName: 'Client',
-//     Key: { id: clientId }
-//   }
-//   const ddb = new DocumentClient();
-//   const client = await ddb.get(params).promise()
-//   const data = client.Item;
+const getClientById = async (clientId) => {
+  const params = {
+    TableName: 'Client',
+    Key: { id: clientId }
+  }
+  const ddb = new DocumentClient();
+  const client = await ddb.get(params).promise()
+  const data = client.Item;
 
-//   return data;
-// }
+  return data;
+}
 
 const getGiftByDateBirth = (dateBirth) => {
 
@@ -30,7 +30,6 @@ const assignGift = async (clienId, gift) => {
 
   const id = v4();
   const createdAt = new Date();
-  const faker = new Faker();
 
   const newData = {
     id,

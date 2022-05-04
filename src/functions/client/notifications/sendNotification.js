@@ -1,7 +1,6 @@
 /* Importing the SNS object from the aws-sdk. */
-const { SNS } = require("aws-sdk");
-/* Importando la función `sendSQSCard` desde el archivo `assignCard.js` ubicado en la carpeta `queue`. */
-// const sendSQSCard = require("../../../queue/assignCard");
+const SNS = require("aws-sdk/clients/sns");
+
 const sns = new SNS();
 
 /* A function that is being exported from the file. */
