@@ -17,19 +17,13 @@ module.exports.notification = async (clientID) => {
   console.log("test");
 
 	/* Publicación de un mensaje al tema. */
-	sns.publish(params, (err, data) => {
-		if (err) {
+	await sns.publish(params).promise().then(() => {
+		console.log("Se publico correctamente...");
+		console.log(`Message ${params.Message} sent to the topic ${params.TopicArn}`);
+		// console.log("MessageID is " + data.MessageId);
+		console.log("Fin de la publicacion...");
+	}).catch(err => {
 			console.log("Hubo un error... ");
 			console.log(err, err.stack);
-		} else {
-			console.log("Se publico correctamente...");
-			console.log(`Message ${params.Message} sent to the topic ${params.TopicArn}`);
-			console.log("MessageID is " + data.MessageId);
-
-			console.log("Fin de la publicacion...");
-
-			/* Envío del ID de cliente a la cola de Card. */
-			// sendSQSCard(params.Message);
-		}
 	});
 };
