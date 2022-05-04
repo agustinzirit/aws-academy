@@ -30,6 +30,8 @@ provider:
   runtime: nodejs14.x
   region: us-east-1
   stage: ${self:custom.stage}
+  enviroment:
+    QUEUE_CARD_URL: https://sqs.${self:provider.region}.amazonaws.com/661329848707/${self:service}-${self:provider.stage}-create-card
   iam:
     role:
       statements:
@@ -42,7 +44,8 @@ provider:
             - arn:aws:dynamodb:us-east-1:661329848707:table/Card
             - arn:aws:dynamodb:us-east-1:661329848707:table/Gift
         - Effect: Allow
-          Action: sns:publish
+          Action:
+            - sns:publish
           Resource:
             - arn:aws:sns:us-east-1:661329848707:aws-academy-dev-clientCreatedSNS
         - Effect: Allow
