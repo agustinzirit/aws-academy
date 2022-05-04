@@ -12,7 +12,7 @@ module.exports.notification = async (clientID) => {
   called Message and it is an object with a property called clientID. The second property is called
   TopicArn and it is a string. */
   var params = {
-    Message: { clientID: clientID },
+    Message: JSON.stringify({ clientID: clientID }),
     TopicArn:
       "arn:aws:sns:us-east-1:661329848707:aws-academy-dev-clientCreatedSNS",
   };
