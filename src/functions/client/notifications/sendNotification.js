@@ -18,10 +18,7 @@ module.exports.notification = async (clientID) => {
   /* A promise that is going to publish the params object to the SNS topic. */
   sns
     .then(function (data) {
-      console.log(JSON.stringify(data));
-      // console.log(
-      //   `Message ${params.Message} sent to the topic ${params.TopicArn}`
-      // );
+      console.log({data});
       console.log("MessageID is " + data.MessageId);
     })
     .catch(function (err) {
