@@ -81,6 +81,7 @@ functions:
     events:
       - sqs:
           arn: !GetAtt createCardQueue.Arn
+
   createGift:
     handler: src/functions/gift/gift.handler
     events:
@@ -133,6 +134,7 @@ resources:
     clientCreatedSNS:
       Type: AWS::SNS::Topic
       Properties:
+        DisplayName: clientCreatedSNS
         TopicName: ${self:service}-${self:provider.stage}-clientCreatedSNS
 
     createCardQueueSubscription:
