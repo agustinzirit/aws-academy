@@ -41,9 +41,6 @@ provider:
             - dynamodb:Put
             - dynamodb:PutItem
           Resource:
-            # - !Ref Client
-            # - !Ref Gift
-            # - !Ref Card
             - arn:aws:dynamodb:us-east-1:661329848707:table/Client
             - arn:aws:dynamodb:us-east-1:661329848707:table/Card
             - arn:aws:dynamodb:us-east-1:661329848707:table/Gift
@@ -65,9 +62,10 @@ functions:
   createClient:
     handler: src/functions/client/client.handler
     events:
-      - httpApi:
-          path: /client
+      - http:
+          path: client
           method: post
+          cors: true
 
   clientCreated:
     handler: src/functions/sns/clientCreatedSNS.handler

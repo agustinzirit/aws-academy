@@ -24,9 +24,7 @@ module.exports.handler = async (event, context, callback) => {
 
     await ddb.put(params).promise();
 
-    // if (client) {
-      await notification(newData.id);
-    // }
+    await notification(newData.id);
 
     return {
       statusCode: 200,
