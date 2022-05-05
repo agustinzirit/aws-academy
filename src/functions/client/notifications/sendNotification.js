@@ -8,19 +8,14 @@ module.exports.notification = async (clientID) => {
 
   /* Creación de un nuevo objeto SNS y publicación de un mensaje en el tema. */
   const params = {
-    Message: clientID,
-    TopicArn:	process.env.CLIENT_CREATED_TOPIC_ARN
-  };
-
-	console.log(params.TopicArn);
-  console.log("Visualizar log");
-  console.log("test");
+		Message: JSON.stringify({ clientID }),
+		TopicArn: process.env.CLIENT_CREATED_TOPIC_ARN,
+	};
 
 	/* Publicación de un mensaje al tema. */
 	await sns.publish(params).promise().then(() => {
 		console.log("Se publico correctamente...");
 		console.log(`Message ${params.Message} sent to the topic ${params.TopicArn}`);
-		// console.log("MessageID is " + data.MessageId);
 		console.log("Fin de la publicacion...");
 	}).catch(err => {
 			console.log("Hubo un error... ");
