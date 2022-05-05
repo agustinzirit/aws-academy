@@ -41,12 +41,12 @@ provider:
             - dynamodb:Put
             - dynamodb:PutItem
           Resource:
-            - !Ref Client
-            - !Ref Gift
-            - !Ref Card
-            # - arn:aws:dynamodb:us-east-1:661329848707:table/Client
-            # - arn:aws:dynamodb:us-east-1:661329848707:table/Card
-            # - arn:aws:dynamodb:us-east-1:661329848707:table/Gift
+            # - !Ref Client
+            # - !Ref Gift
+            # - !Ref Card
+            - arn:aws:dynamodb:us-east-1:661329848707:table/Client
+            - arn:aws:dynamodb:us-east-1:661329848707:table/Card
+            - arn:aws:dynamodb:us-east-1:661329848707:table/Gift
         - Effect: Allow
           Action:
             - SNS:Publish
