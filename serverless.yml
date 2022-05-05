@@ -62,24 +62,14 @@ functions:
   createClient:
     handler: src/functions/client/client.handler
     events:
-      - http:
-          path: client
+      - httpApi:
+          path: /client
           method: post
-          cors: true
-
-  clientCreated:
-    handler: src/functions/sns/clientCreatedSNS.handler
-    events:
-      - sns:
-          arn: !Ref clientCreatedSNS
-          topicName: clientCreatedSNS
-
   createCard:
     handler: src/functions/card/card.handler
     events:
       - sqs:
           arn: !GetAtt createCardQueue.Arn
-
   createGift:
     handler: src/functions/gift/gift.handler
     events:
@@ -132,7 +122,6 @@ resources:
     clientCreatedSNS:
       Type: AWS::SNS::Topic
       Properties:
-        DisplayName: clientCreatedSNS
         TopicName: ${self:service}-${self:provider.stage}-clientCreatedSNS
 
     createCardQueueSubscription:
